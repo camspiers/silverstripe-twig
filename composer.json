@@ -1,0 +1,18 @@
+{
+    "name": "camspiers/silverstripe-twig",
+    "type": "silverstripe-module",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cam Spiers",
+            "email": "cameron@heyday.co.nz",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "composer/installers": "1.0.0",
+        "twig/twig": "1.11.*",
+        "camspiers/autoloader-composer-silverstripe": "1.0.*"
+    }
+}
