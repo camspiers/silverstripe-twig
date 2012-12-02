@@ -13,6 +13,7 @@
     "require": {
         "composer/installers": "1.0.0",
         "twig/twig": "1.11.*",
-        "camspiers/autoloader-composer-silverstripe": "1.0.*"
+        "camspiers/autoloader-composer-silverstripe": "1.0.*",
+        "pimple/pimple": "1.0.0"
     }
 }
