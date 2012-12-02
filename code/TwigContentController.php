@@ -113,7 +113,6 @@ class TwigContentController extends ContentController
             // remove duplicates
             $templates = array_unique($templates);
         }
-        Debug::dump($templates);
         $loader = self::getTwigLoader();
         foreach ($templates as $value) {
             if ($loader->exists($value . '.twig')) {

@@ -4,7 +4,9 @@ class TwigContainer extends Pimple
 {
 
     protected static $config = array(
-        'twig.environment_options' => array(),
+        'twig.environment_options' => array(
+        	'auto_reload' => true
+        ),
         'twig.templates_path'      => false
     );
 
@@ -15,7 +17,7 @@ class TwigContainer extends Pimple
 
         $this['twig'] = $this->share(function ($c) {
             return new Twig_Environment(
-                $c['twig.loader'],
+                $c->offsetExists('twig.extra_loader') ? $c['twig.extra_loader'] : $c['twig.loader'],
                 array_merge(
                     array(
                         'cache' => $c['twig.compilation_cache']
@@ -37,6 +39,18 @@ class TwigContainer extends Pimple
 
         foreach (self::$config as $key => $value) {
             $this[$key] = $value;
+        }
+        
+        if (is_array($this['extensions'])) {
+            foreach ($this['extensions'] as $key => $value) {
+                $this->extend($key, $value);
+            }
+        }
+        
+        if (is_array($this['shared'])) {
+            foreach ($this['shared'] as $key => $value) {
+                $this[$key] = $this->share($value);
+            }
         }
 
     }
