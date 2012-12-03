@@ -20,6 +20,21 @@ class TwigContentController extends ContentController
 
     }
 
+    public function customise($params)
+    {
+
+        if (is_array($params)) {
+
+            foreach ($params as $key => $value) {
+                $this->$key = $value;
+            }
+
+        }
+
+        return $this;
+
+    }
+
     public function handleAction($request)
     {
         // urlParams, requestParams, and action are set for backward compatability
@@ -84,6 +99,13 @@ class TwigContentController extends ContentController
         return $dic['twig.loader'];
     }
 
+    protected static function getTwigExtension()
+    {
+        $dic = self::getTwigContainer();
+
+        return $dic['twig.extension'];
+    }
+
     protected function getTwigTemplate($action = null)
     {
         // Hard-coded templates
@@ -114,9 +136,10 @@ class TwigContentController extends ContentController
             $templates = array_unique($templates);
         }
         $loader = self::getTwigLoader();
+        $extension = self::getTwigExtension();
         foreach ($templates as $value) {
-            if ($loader->exists($value . '.twig')) {
-                return self::getTwig()->loadTemplate($value . '.twig');
+            if ($loader->exists($value . $extension)) {
+                return self::getTwig()->loadTemplate($value . $extension);
             }
         }
         throw new InvalidArgumentException("No templates for " . implode(', ', $templates) . " exist");

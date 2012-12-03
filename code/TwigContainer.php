@@ -5,9 +5,10 @@ class TwigContainer extends Pimple
 
     protected static $config = array(
         'twig.environment_options' => array(
-        	'auto_reload' => true
+            'auto_reload' => true
         ),
-        'twig.templates_path'      => false
+        'twig.templates_path'      => false,
+        'twig.extension'           => '.twig'
     );
 
     public function __construct()
@@ -40,13 +41,13 @@ class TwigContainer extends Pimple
         foreach (self::$config as $key => $value) {
             $this[$key] = $value;
         }
-        
+
         if (is_array($this['extensions'])) {
             foreach ($this['extensions'] as $key => $value) {
                 $this->extend($key, $value);
             }
         }
-        
+
         if (is_array($this['shared'])) {
             foreach ($this['shared'] as $key => $value) {
                 $this[$key] = $this->share($value);
