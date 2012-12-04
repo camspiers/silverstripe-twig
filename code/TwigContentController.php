@@ -5,6 +5,11 @@ class TwigContentController extends ContentController
 
     protected static $dic;
 
+    public function __isset($name)
+    {
+        return true;
+    }
+
     public function render($params = null)
     {
 
