@@ -8,7 +8,9 @@ class TwigContainer extends Pimple
             'auto_reload' => true
         ),
         'twig.templates_path'      => false,
-        'twig.extension'           => '.twig'
+        'twig.extensions'          => array(
+            '.twig'
+        )
     );
 
     public function __construct()

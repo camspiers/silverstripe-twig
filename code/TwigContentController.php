@@ -7,7 +7,7 @@ class TwigContentController extends ContentController
 
     public function __isset($name)
     {
-        return true;
+        return $this->hasMethod($name) ? false : true;
     }
 
     public function render($params = null)
@@ -104,11 +104,11 @@ class TwigContentController extends ContentController
         return $dic['twig.loader'];
     }
 
-    protected static function getTwigExtension()
+    protected static function getTwigExtensions()
     {
         $dic = self::getTwigContainer();
 
-        return $dic['twig.extension'];
+        return $dic['twig.extensions'];
     }
 
     protected function getTwigTemplate($action = null)
@@ -141,10 +141,12 @@ class TwigContentController extends ContentController
             $templates = array_unique($templates);
         }
         $loader = self::getTwigLoader();
-        $extension = self::getTwigExtension();
+        $extensions = self::getTwigExtensions();
         foreach ($templates as $value) {
-            if ($loader->exists($value . $extension)) {
-                return self::getTwig()->loadTemplate($value . $extension);
+            foreach ($extensions as $extension) {
+                if ($loader->exists($value . $extension)) {
+                    return self::getTwig()->loadTemplate($value . $extension);
+                }
             }
         }
         throw new InvalidArgumentException("No templates for " . implode(', ', $templates) . " exist");

@@ -12,7 +12,10 @@ if (class_exists('HamlSilverStripeContainer')) {
         'twig.extra_loader' => function ($c) {
             return new MtHaml\Support\Twig\Loader($c['haml.env'], $c['twig.loader']);
         },
-        'twig.extension' => '.haml',
+        'twig.extensions' => array(
+            '.haml',
+            '.twig'
+        ),
         'shared' => array(
             'haml.env' => function ($c) {
                 return $c['haml.dic']['environment'];
