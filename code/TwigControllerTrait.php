@@ -3,6 +3,16 @@
 trait TwigControllerTrait
 {
 
+    public function __get($name)
+    {
+        if ($name == 'dic') {
+            $this->dic = new TwigContainer;
+            return $this->dic;
+        } else {
+            return parent::__get($name);
+        }
+    }
+
     public function __isset($name)
     {
         return $this->hasMethod($name) ? false : true;
