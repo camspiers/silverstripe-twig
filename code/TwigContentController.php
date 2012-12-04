@@ -3,41 +3,17 @@
 class TwigContentController extends ContentController
 {
 
-    protected static $dic;
+    protected $dic;
+
+    public function __construct($dataRecord = null)
+    {
+        $this->dic = new TwigContainer;
+        parent::__construct($dataRecord);
+    }
 
     public function __isset($name)
     {
         return $this->hasMethod($name) ? false : true;
-    }
-
-    public function render($params = null)
-    {
-
-        $obj = ($this->customisedObj) ? $this->customisedObj : $this;
-
-        if ($params) {
-
-            $obj = $this->customise($params);
-
-        }
-
-        return $this->renderTwig($this->getAction(), $obj);
-
-    }
-
-    public function customise($params)
-    {
-
-        if (is_array($params)) {
-
-            foreach ($params as $key => $value) {
-                $this->$key = $value;
-            }
-
-        }
-
-        return $this;
-
     }
 
     public function handleAction($request)
@@ -65,53 +41,69 @@ class TwigContentController extends ContentController
 
             // If the action returns an array, customise with it before rendering the template.
             if (is_array($result)) {
-                return $this->renderTwig($this->action, $this->customise($result));
+                return $this->renderTwig($this->getTemplateList($this->action), $this->customise($result));
             } else {
                 return $result;
             }
         } else {
-            return $this->renderTwig($this->action, $this);
+            return $this->renderTwig($this->getTemplateList($this->action), $this);
         }
     }
 
-    protected function renderTwig($action, $context)
+    public function renderWith($templates, $customFields = null)
     {
-        return $this->getTwigTemplate($action)->render(array(
+        $data = ($this->customisedObject) ? $this->customisedObject : $this;
+
+        if (is_array($customFields) || $customFields instanceof ViewableData) {
+            $data = $data->customise($customFields);
+        }
+
+        return $this->renderTwig($templates, $data);
+    }
+
+    public function render($params = null)
+    {
+        $obj = ($this->customisedObj) ? $this->customisedObj : $this;
+        if ($params) {
+            $obj = $this->customise($params);
+        }
+
+        return $this->renderTwig($this->getTemplateList($this->getAction()), $obj);
+    }
+
+    protected function renderTwig($templates, $context)
+    {
+        return $this->getTwigTemplate($templates)->render(array(
             'c' => $context
         ));
     }
 
-    protected static function getTwigContainer()
+    public function customise($params)
     {
-        if (null === self::$dic) {
-            self::$dic = new TwigContainer;
+        if (is_array($params)) {
+            foreach ($params as $key => $value) {
+                $this->$key = $value;
+            }
         }
 
-        return self::$dic;
+        return $this;
     }
 
-    protected static function getTwig()
+    protected function getTwigTemplate($templates)
     {
-        $dic = self::getTwigContainer();
-
-        return $dic['twig'];
+        $loader = $this->getTwigLoader();
+        $extensions = $this->getTwigExtensions();
+        foreach ($templates as $value) {
+            foreach ($extensions as $extension) {
+                if ($loader->exists($value . $extension)) {
+                    return $this->getTwig()->loadTemplate($value . $extension);
+                }
+            }
+        }
+        throw new InvalidArgumentException("No templates for " . implode(', ', $templates) . " exist");
     }
 
-    protected static function getTwigLoader()
-    {
-        $dic = self::getTwigContainer();
-
-        return $dic['twig.loader'];
-    }
-
-    protected static function getTwigExtensions()
-    {
-        $dic = self::getTwigContainer();
-
-        return $dic['twig.extensions'];
-    }
-
-    protected function getTwigTemplate($action = null)
+    protected function getTemplateList($action = null)
     {
         // Hard-coded templates
         if ($this->templates[$action]) {
@@ -140,16 +132,23 @@ class TwigContentController extends ContentController
             // remove duplicates
             $templates = array_unique($templates);
         }
-        $loader = self::getTwigLoader();
-        $extensions = self::getTwigExtensions();
-        foreach ($templates as $value) {
-            foreach ($extensions as $extension) {
-                if ($loader->exists($value . $extension)) {
-                    return self::getTwig()->loadTemplate($value . $extension);
-                }
-            }
-        }
-        throw new InvalidArgumentException("No templates for " . implode(', ', $templates) . " exist");
+
+        return $templates;
+    }
+
+    protected function getTwig()
+    {
+        return $this->dic['twig'];
+    }
+
+    protected function getTwigLoader()
+    {
+        return $this->dic['twig.loader'];
+    }
+
+    protected function getTwigExtensions()
+    {
+        return $this->dic['twig.extensions'];
     }
 
 }
