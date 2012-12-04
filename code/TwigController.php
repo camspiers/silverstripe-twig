@@ -2,17 +2,17 @@
 
 require_once __DIR__ . '/TwigControllerTrait.php';
 
-class TwigContentController extends ContentController
+class TwigController extends Controller
 {
 
     use TwigControllerTrait;
 
     protected $dic;
 
-    public function __construct($dataRecord = null)
+    public function __construct()
     {
         $this->dic = new TwigContainer;
-        parent::__construct($dataRecord);
+        parent::__construct();
     }
 
 }
