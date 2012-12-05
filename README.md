@@ -201,7 +201,6 @@ Example:
 				= c.Content|raw
 			%span.created
 				= c.Created|date("d/m/Y")
-	
 ```
 
 
