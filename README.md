@@ -33,6 +33,14 @@ After completing this step, navigate in Terminal or similar to the SilverStripe 
 
 If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
+Create a folder called `twig` in your current theme. This is where twig will look for your templates. By default Twig expects your templates to be named with the `.twig` extension, but can be easily configured to look for others.
+
+The way SilverStripe twig decides which template to use is the same way SilverStripe selects `.ss` templates.
+
+It builds a ranked list of candidate templates based on the class name of the current controller or dataRecord and the action being called. Using the template list it selects the first template that it finds.
+
+For example, for page of PageType `Page`. If there is a `Page.twig` template in the twig folder it will use that.
+
 ###Configuration
 
 SilverStripe Twig uses a dependency injection container (an extension of `Pimple`) to allow configuration and DI for all objects used.
@@ -42,6 +50,7 @@ SilverStripe Twig uses a dependency injection container (an extension of `Pimple
 * twig.environment_options
 * twig.extensions
 * twig.compilation_cache
+* twig.template_paths
 
 `mysite/_config.php`
 
