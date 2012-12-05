@@ -163,7 +163,6 @@ Any service provided by SilverStripe Twig can be accessed by instantiating the C
 ```
 $dic = new Twig;
 $dic['twig']->loadTemplate('template.twig')->render();
-
 ```
 
 See [Pimple](http://pimple.sensiolabs.org/) for more information.
