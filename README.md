@@ -10,7 +10,7 @@ SilverStripe Twig enables the use of the Twig templating engine in SilverStripe.
 
 Create or edit a `composer.json` file in the root of your SilverStripe project, and make sure the following is present.
 
-```json
+```
 {
     "repositories": [
         {
@@ -33,9 +33,9 @@ After completing this step, navigate in Terminal or similar to the SilverStripe 
 
 If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
-###What to call and where to put your templates
+###What to name and where to put your templates
 
-Create a folder called `twig` in your current theme. This is where twig will look for your templates. By default Twig expects your templates to be named with the `.twig` extension, but can be easily configured to look for others.
+Create a folder called `twig` in your current theme. This is where twig will look for your templates. By default Twig expects your templates to be named with the `.twig` extension, but can be easily configured to look for others (see `twig.extensions`).
 
 The way SilverStripe twig decides which template to use is the same way SilverStripe selects `.ss` templates.
 
@@ -94,12 +94,18 @@ SilverStripe Twig uses a dependency injection container (an extension of `Pimple
 * twig.compilation_cache
 * twig.template_paths
 
+An example:
+
 `mysite/_config.php`
 
 ```
 TwigContainer::extendConfig(array(
 	'twig.environment_options' => array(
         'debug' => true
+    ),
+    'twig.extensions' => array(
+    	'.twig',
+    	'.html'
     )
 ));
 ```
@@ -113,6 +119,23 @@ $dic['twig']->loadTemplate('template.twig')->render();
 ```
 
 See [Pimple](http://pimple.sensiolabs.org/) for more information.
+
+##Using Twig and Haml together
+SilverStripe twig supports the use of haml through the [SilverStripe haml](https://github.com/camspiers/silverstripe-haml) module.
+
+Install the SilverStripe haml module and you are ready to go.
+
+You can now name your files `.haml` (though you don't have to).
+
+###Usage
+
+To get Twig to process your file as `Haml` add:
+
+```
+{% haml %}
+```
+
+To the top of any template you want to be processed as haml.
 
 
 ##Contributing
