@@ -2,7 +2,9 @@
 
 ##Overview
 
-SilverStripe Twig enables the use of the Twig templating engine in SilverStripe. 
+SilverStripe Twig enables the use of the Twig templating engine in SilverStripe.
+
+If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
 ##Installation
 
@@ -30,8 +32,6 @@ Currently SilverStripe Twig is in development so it isn't available through pack
 After completing this step, navigate in Terminal or similar to the SilverStripe root directory and run `composer install` or `composer update` depending on whether or not you have composer already in use.
 
 ##Getting started
-
-If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
 ###What to name and where to put your templates
 
@@ -82,6 +82,50 @@ class MyController extends Controller
 	use TwigControllerTrait;	
 }
 ```
+
+###Practical usage example
+
+Achieving similar functionality to SilverStripe `$Layout` variable is easy with twig.
+
+Twig has the concepts of `extends` and `blocks` which enable flexible template reuse.
+
+`Page.twig`
+
+```
+{% extends "layouts/layout.twig" %}
+
+{% block head %}
+	{{ parent() }}
+	{# add some extra assets here %}
+{% endblock %}
+
+{% block header %}
+	{# add some header content here %}
+{% endblock %}
+
+{% block content %}
+	<h1>{{ c.Title }}</h1>
+{% endblock %}
+```
+
+`layouts/layout.twig`
+
+```
+<html>
+	<head>
+		{% block head %}
+			{# default assets here #}
+		{% endblock %}
+	</head>
+	<body>
+		{% block header %}{% endblock %}
+		{% block content %}{% endblock %}
+	</body>
+</html>
+```
+
+Twig is very flexible and is highly engineered towards template reuse. 
+
 
 ###Configuration
 
@@ -140,6 +184,26 @@ To get Twig to process your file as `Haml` add:
 ```
 
 To the top of any template you want to be processed as haml.
+
+Example:
+
+```
+{% haml %}
+!!!
+%html
+	%head
+		- block head
+			:javascript
+				alert('test');
+	%body
+		- block content
+			%h1 {# c.Title #}
+			%p
+				= c.Content|raw
+			%span.created
+				= c.Created|date("d/m/Y")
+	
+```
 
 
 ##Contributing
