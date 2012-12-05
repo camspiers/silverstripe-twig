@@ -196,7 +196,7 @@ Example:
 				alert('test');
 	%body
 		- block content
-			%h1 {# c.Title #}
+			%h1 #{ c.Title }
 			%p
 				= c.Content|raw
 			%span.created
