@@ -7,6 +7,7 @@ trait TwigControllerTrait
     {
         if ($name == 'dic') {
             $this->dic = new TwigContainer;
+
             return $this->dic;
         } else {
             return parent::__get($name);

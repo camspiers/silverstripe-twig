@@ -2,7 +2,10 @@
 
 class TwigContainer extends Pimple
 {
-    //Default config
+    /**
+     * Default config of properties
+     * @var array
+     */
     protected static $config = array(
         'twig.loader_class' => 'Twig_Loader_Filesystem',
         'twig.environment_options' => array(
@@ -12,10 +15,19 @@ class TwigContainer extends Pimple
             '.twig'
         )
     );
-
+    /**
+     * Holds user configured extensions of services
+     * @var array
+     */
     protected static $extensions = array();
+    /**
+     * Holds user configured shared services
+     * @var array
+     */
     protected static $shared = array();
-
+    /**
+     * Constructs the container and set up default services and properties
+     */
     public function __construct()
     {
 
@@ -72,17 +84,28 @@ class TwigContainer extends Pimple
         }
 
     }
-
+    /**
+     * Alows the extending of already defined services by the user
+     * @param string  $name      Name of service
+     * @param Closure $extension Extending function
+     */
     public static function addExtension($name, $extension)
     {
         self::$extensions[] = array($name, $extension);
     }
-
+    /**
+     * Allows the adding of a shared service by the user
+     * @param string  $name   Name of service
+     * @param Closure $shared The shared service function
+     */
     public static function addShared($name, $shared)
     {
         self::$shared[] = array($name, $shared);
     }
-
+    /**
+     * Allows the addition to the default config by the user
+     * @param array $config The extending config
+     */
     public static function extendConfig($config)
     {
         if (is_array($config)) {
