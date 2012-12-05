@@ -96,11 +96,11 @@ Twig has the concepts of `extends` and `blocks` which enable flexible template r
 
 {% block head %}
 	{{ parent() }}
-	{# add some extra assets here %}
+	{# add some extra assets here #}
 {% endblock %}
 
 {% block header %}
-	{# add some header content here %}
+	{# add some header content here #}
 {% endblock %}
 
 {% block content %}
