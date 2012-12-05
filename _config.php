@@ -7,7 +7,6 @@ if (class_exists('HamlSilverStripeContainer')) {
 
     TwigContainer::addExtension('twig', function ($twig, $c) {
         $twig->addExtension(new MtHaml\Support\Twig\Extension);
-
         return $twig;
     });
 
