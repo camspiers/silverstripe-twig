@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/code/TwigControllerTrait.php'
+require_once __DIR__ . '/code/TwigControllerTrait.php';
 
 // If haml is available allow it to be used
 if (class_exists('HamlSilverStripeContainer')) {
