@@ -106,6 +106,10 @@ TwigContainer::extendConfig(array(
     'twig.extensions' => array(
     	'.twig',
     	'.html'
+    ),
+    'twig.compilation_cache' => BASE_PATH . '/silverstripe-cache',
+    'twig.template_paths' => array(
+    	THEMES_PATH . '/my-theme/templates'
     )
 ));
 ```
