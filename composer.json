@@ -17,7 +17,7 @@
         },
         {
             "type": "git",
-            "url": "/Users/cameron/Sites/php-trait-convert"
+            "url": "https://github.com/camspiers/php-trait-convert.git"
         }
     ],
     "require": {
