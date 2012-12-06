@@ -16,5 +16,9 @@
         "camspiers/autoloader-composer-silverstripe": "1.0.*",
         "twig/twig": "1.11.*",
         "pimple/pimple": "1.0.0"
+    },
+    "require-dev": {
+        "camspiers/php-trait-convert": "dev-master",
+        "silverstripe/sapphire": "2.4.8"
     }
 }
