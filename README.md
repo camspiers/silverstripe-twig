@@ -191,9 +191,10 @@ Example:
 !!!
 %html
 	%head
+		%title #{ c.Title } | haml and twig
 		- block head
 			:javascript
-				alert('test');
+				console.log('yay');
 	%body
 		- block content
 			%h1 #{ c.Title }
