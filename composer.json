@@ -10,6 +10,16 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.heyday.net.nz/"
+        },
+        {
+            "type": "git",
+            "url": "/Users/cameron/Sites/php-trait-convert"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
         "composer/installers": "1.0.0",
@@ -19,6 +29,7 @@
     },
     "require-dev": {
         "camspiers/php-trait-convert": "dev-master",
-        "silverstripe/sapphire": "2.4.8"
+        "silverstripe/sapphire": "2.4.8",
+        "composer/composer": "1.0.0-alpha6"
     }
 }
