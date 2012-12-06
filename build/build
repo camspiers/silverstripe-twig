@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+$dir = __DIR__ . '/..';
+
+if (file_exists($dir . '/vendor/autoload.php')) {
+
+	require_once $dir . '/code/TwigControllerTrait.php';
+
+	$loader = require_once $dir . '/vendor/autoload.php';
+
+	$loader->addClassMap(Composer\Autoload\ClassMapGenerator::createMap('sapphire'));
+	$loader->addClassMap(Composer\Autoload\ClassMapGenerator::createMap('.'));
+
+	$converter = new Camspiers\TraitConvert\Converter(
+		array(
+			'TwigContentController',
+			'TwigController'
+		),
+		$dir . '/code/generated-classes'
+	);
+
+	$converter->convert();
+
+} else {
+
+	echo 'Please run "composer install --dev && composer dumpautoload -o"';
+
+}
