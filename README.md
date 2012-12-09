@@ -21,7 +21,8 @@ Create or edit a `composer.json` file in the root of your SilverStripe project, 
         }
     ],
     "require": {
-        "camspiers/silverstripe-twig": "dev-master"
+        "camspiers/silverstripe-twig": "dev-master",
+		"camspiers/autoloader-composer-silverstripe": "1.0.*"
     },
     "minimum-stability": "dev"
 }

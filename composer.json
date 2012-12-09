@@ -23,7 +23,6 @@
     "require": {
         "php": ">=5.4.0",
         "composer/installers": "1.0.0",
-        "camspiers/autoloader-composer-silverstripe": "1.0.*",
         "twig/twig": "1.11.*",
         "pimple/pimple": "1.0.0"
     },
