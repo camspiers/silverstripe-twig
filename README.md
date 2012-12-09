@@ -164,7 +164,7 @@ TwigContainer::extendConfig(array(
 Any service provided by SilverStripe Twig can be accessed by instantiating the Container.
 
 ```
-$dic = new Twig;
+$dic = new TwigContainer;
 $dic['twig']->loadTemplate('template.twig')->render();
 ```
 
