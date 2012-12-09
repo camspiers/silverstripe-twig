@@ -91,7 +91,7 @@ class MyController extends Controller
 
 ###Practical usage example
 
-Achieving similar functionality to SilverStripe `$Layout` variable is easy with twig.
+Achieving similar functionality to SilverStripe's `$Layout` variable is easy with twig.
 
 Twig has the concepts of `extends` and `blocks` which enable flexible template reuse.
 
