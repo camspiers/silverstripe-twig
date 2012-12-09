@@ -130,9 +130,6 @@ Twig has the concepts of `extends` and `blocks` which enable flexible template r
 </html>
 ```
 
-Twig is very flexible and is highly engineered towards template reuse. 
-
-
 ###Configuration
 
 SilverStripe Twig uses a dependency injection container (an extension of `Pimple`) to allow configuration and DI for all objects used.
