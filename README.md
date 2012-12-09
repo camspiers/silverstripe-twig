@@ -61,6 +61,7 @@ class Page_Controller extends TwigContentController
 ```
 
 If you want to use twig in a `Controller`, set up is as follows:
+
 `MyController.php`
 
 ```
