@@ -201,10 +201,8 @@ Example:
 	%body
 		- block content
 			%h1 #{ c.Title }
-			%p
-				= c.Content|raw
-			%span.created
-				= c.Created|date("d/m/Y")
+			%p #{ c.Content|raw }
+			%span.created #{ c.Created|date("d/m/Y") }
 ```
 
 
