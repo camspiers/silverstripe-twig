@@ -57,7 +57,6 @@ If you want to use twig for all controllers that extend `Page_Controller`, set u
 ```
 class Page_Controller extends TwigContentController
 {
-
 }
 ```
 
@@ -67,7 +66,6 @@ If you want to use twig in a `Controller`, set up is as follows:
 ```
 class MyController extends TwigController
 {
-
 }
 ```
 
