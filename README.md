@@ -89,6 +89,30 @@ class MyController extends Controller
 }
 ```
 
+###Accessing your Controller in twig
+
+By default twig makes your controller (and therefore your dataRecord) available in your template by the variable `c`.
+
+```
+{% for Page in c.Pages %}
+	{{ Page.Title }}
+{% endfor %}
+```
+
+```
+<title>{{ c.Title }}</title>
+```
+
+```
+<ul>
+{% for Page in c.Menu(1) %}
+	<li>{{ Page.Title }}</li>
+{% else %}
+	<li>No pages</li>
+{% endfor %}
+</ul>
+```
+
 ###Practical usage example
 
 Achieving similar functionality to SilverStripe's `$Layout` variable is easy with twig.
