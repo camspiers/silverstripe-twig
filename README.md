@@ -14,21 +14,12 @@ Create or edit a `composer.json` file in the root of your SilverStripe project, 
 
 ```
 {
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/camspiers/silverstripe-twig.git"
-        }
-    ],
     "require": {
-        "camspiers/silverstripe-twig": "dev-master",
+        "camspiers/silverstripe-twig": "0.0.*",
 		"camspiers/autoloader-composer-silverstripe": "1.0.*"
-    },
-    "minimum-stability": "dev"
+    }
 }
 ```
-
-Currently SilverStripe Twig is in development so it isn't available through packagist.
 
 After completing this step, navigate in Terminal or similar to the SilverStripe root directory and run `composer install` or `composer update` depending on whether or not you have composer already in use.
 
