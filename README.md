@@ -44,7 +44,11 @@ It builds a ranked list of candidate templates based on the class name of the cu
 
 For example, for page of PageType `Page`. If there is a `Page.twig` template in the twig folder it will use that.
 
-###Enabling twig usage on your controller
+###How to enable twig
+
+Twig rendering is enabled by extending the functionality of your SilverStripe controller. This can be done in two ways depending on what version of PHP you have.
+
+####PHP 5.3
 
 If you want to use twig for all controllers that extend `Page_Controller`, set up is as follows:
 
@@ -57,7 +61,7 @@ class Page_Controller extends TwigContentController
 }
 ```
 
-If you want to use twig in a non-`ContentController`, set up is as follows:
+If you want to use twig in a `Controller`, set up is as follows:
 `MyController.php`
 
 ```
@@ -67,7 +71,9 @@ class MyController extends TwigController
 }
 ```
 
-Or alternatively you can use traits:
+####PHP 5.4
+
+The PHP 5.3 classes above are actually auto-generated from a trait. To use the trait add a `use` statement in your controller as follows:
 
 ```
 class Page_Controller extends ContentController
