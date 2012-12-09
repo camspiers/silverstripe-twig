@@ -1,7 +1,7 @@
 {
     "name": "camspiers/silverstripe-twig",
     "type": "silverstripe-module",
-    "description": "",
+    "description": "Allows use of twig in SilverStripe",
     "license": "MIT",
     "authors": [
         {
@@ -11,10 +11,6 @@
         }
     ],
     "repositories": [
-        {
-            "type": "composer",
-            "url": "http://packages.heyday.net.nz/"
-        },
         {
             "type": "git",
             "url": "https://github.com/camspiers/php-trait-convert.git"
@@ -28,7 +24,7 @@
     },
     "require-dev": {
         "camspiers/php-trait-convert": "dev-master",
-        "silverstripe/sapphire": "2.4.8",
+        "silverstripe/framework": "2.4.9",
         "composer/composer": "1.0.0-alpha6"
     }
 }

@@ -9,7 +9,7 @@ if (file_exists($dir . '/vendor/autoload.php')) {
 
 	$loader = require_once $dir . '/vendor/autoload.php';
 
-	$loader->addClassMap(Composer\Autoload\ClassMapGenerator::createMap($dir . '/sapphire'));
+	$loader->addClassMap(Composer\Autoload\ClassMapGenerator::createMap($dir . '/framework'));
 	$loader->addClassMap(Composer\Autoload\ClassMapGenerator::createMap('.'));
 
 	$converter = new Camspiers\TraitConvert\Converter(
