@@ -59,6 +59,10 @@ class TwigContentController extends ContentController
             $data = $data->customise($customFields);
         }
 
+        if (!is_array($templates)) {
+            $templates = array($templates);
+        }
+
         return $this->renderTwig($templates, $data);
     }
 
