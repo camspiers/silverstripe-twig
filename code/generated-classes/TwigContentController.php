@@ -7,9 +7,7 @@ class TwigContentController extends ContentController
     public function __get($name)
     {
         if ($name == 'dic') {
-            $this->dic = new TwigContainer;
-
-            return $this->dic;
+            return $this->dic = new TwigContainer;
         } else {
             return parent::__get($name);
         }
@@ -78,7 +76,7 @@ class TwigContentController extends ContentController
     protected function renderTwig($templates, $context)
     {
         return $this->getTwigTemplate($templates)->render(array(
-            'c' => $context
+            $this->dic['twig.controller_variable_name'] => $context
         ));
     }
 
@@ -95,12 +93,12 @@ class TwigContentController extends ContentController
 
     protected function getTwigTemplate($templates)
     {
-        $loader = $this->getTwigLoader();
-        $extensions = $this->getTwigExtensions();
+        $loader = $this->dic['twig.loader'];
+        $extensions = $this->dic['twig.extensions'];
         foreach ($templates as $value) {
             foreach ($extensions as $extension) {
                 if ($loader->exists($value . $extension)) {
-                    return $this->getTwig()->loadTemplate($value . $extension);
+                    return $this->dic['twig']->loadTemplate($value . $extension);
                 }
             }
         }
@@ -138,21 +136,6 @@ class TwigContentController extends ContentController
         }
 
         return $templates;
-    }
-
-    protected function getTwig()
-    {
-        return $this->dic['twig'];
-    }
-
-    protected function getTwigLoader()
-    {
-        return $this->dic['twig.loader'];
-    }
-
-    protected function getTwigExtensions()
-    {
-        return $this->dic['twig.extensions'];
     }
 
 }
