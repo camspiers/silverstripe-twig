@@ -2,7 +2,7 @@
 
 ##Overview
 
-SilverStripe Twig enables the use of the Twig templating engine in SilverStripe.
+SilverStripe Twig enables the use of the Twig templating engine in SilverStripe 2.4.
 
 If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
