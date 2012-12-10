@@ -3,7 +3,6 @@
 class TwigContentController extends ContentController
 {
 
-
     public function __get($name)
     {
         if ($name == 'dic') {

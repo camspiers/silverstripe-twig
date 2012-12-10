@@ -3,7 +3,6 @@
 class TwigController extends Controller
 {
 
-
     public function __get($name)
     {
         if ($name == 'dic') {
