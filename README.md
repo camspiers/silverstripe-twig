@@ -12,7 +12,7 @@ If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.o
 
 Create or edit a `composer.json` file in the root of your SilverStripe project, and make sure the following is present.
 
-```
+```json
 {
     "require": {
         "camspiers/silverstripe-twig": "0.0.*",
@@ -45,7 +45,7 @@ If you want to use twig for all controllers that extend `Page_Controller`, set u
 
 `Page.php`
 
-```
+```php
 class Page_Controller extends TwigContentController
 {
 }
@@ -55,7 +55,7 @@ If you want to use twig in a `Controller`, set up is as follows:
 
 `MyController.php`
 
-```
+```php
 class MyController extends TwigController
 {
 }
@@ -65,7 +65,7 @@ class MyController extends TwigController
 
 The PHP 5.3 classes above are actually auto-generated from a trait. To use the trait add a `use` statement in your controller as follows:
 
-```
+```php
 class Page_Controller extends ContentController
 {
 	use TwigControllerTrait;	
@@ -73,7 +73,7 @@ class Page_Controller extends ContentController
 ```
 or:
 
-```
+```php
 class MyController extends Controller
 {
 	use TwigControllerTrait;	
@@ -84,17 +84,17 @@ class MyController extends Controller
 
 By default twig makes your controller (and therefore your dataRecord) available in your template by the variable `c`.
 
-```
+```jinja
 {% for Page in c.Pages %}
 	{{ Page.Title }}
 {% endfor %}
 ```
 
-```
+```jinja
 <title>{{ c.Title }}</title>
 ```
 
-```
+```jinja
 <ul>
 {% for Page in c.Menu(1) %}
 	<li>{{ Page.Title }}</li>
@@ -112,7 +112,7 @@ Twig has the concepts of `extends` and `blocks` which enable flexible template r
 
 `Page.twig`
 
-```
+```jinja
 {% extends "layouts/layout.twig" %}
 
 {% block head %}
@@ -131,7 +131,7 @@ Twig has the concepts of `extends` and `blocks` which enable flexible template r
 
 `layouts/layout.twig`
 
-```
+```jinja
 <html>
 	<head>
 		{% block head %}
@@ -161,7 +161,7 @@ An example:
 
 `mysite/_config.php`
 
-```
+```php
 TwigContainer::extendConfig(array(
 	'twig.environment_options' => array(
         'debug' => true
@@ -180,7 +180,7 @@ TwigContainer::extendConfig(array(
 
 Any service provided by SilverStripe Twig can be accessed by instantiating the Container.
 
-```
+```php
 $dic = new TwigContainer;
 $dic['twig']->loadTemplate('template.twig')->render();
 ```
@@ -198,7 +198,7 @@ You can now name your files `.haml` (though you don't have to).
 
 To get Twig to process your file as `Haml` add:
 
-```
+```jinja
 {% haml %}
 ```
 
