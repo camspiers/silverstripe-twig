@@ -22,8 +22,10 @@ if (file_exists($dir . '/vendor/autoload.php')) {
 
 	$converter->convert();
 
+	echo 'Done', PHP_EOL;
+
 } else {
 
-	echo 'Please run "composer install --dev && composer dumpautoload -o"';
+	echo 'Please run "composer install --dev && composer dumpautoload -o"', PHP_EOL;
 
 }
