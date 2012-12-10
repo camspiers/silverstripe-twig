@@ -77,7 +77,7 @@ trait TwigControllerTrait
     protected function renderTwig($templates, $context)
     {
         return $this->getTwigTemplate($templates)->render(array(
-            'c' => $context
+            $this->dic['twig.controller_variable_name'] => $context
         ));
     }
 

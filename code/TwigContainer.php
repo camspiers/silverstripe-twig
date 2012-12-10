@@ -13,7 +13,8 @@ class TwigContainer extends Pimple
         ),
         'twig.extensions' => array(
             '.twig'
-        )
+        ),
+        'twig.controller_variable_name' => 'c'
     );
     /**
      * Holds user configured extensions of services
