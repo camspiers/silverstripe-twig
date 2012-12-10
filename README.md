@@ -155,6 +155,7 @@ SilverStripe Twig uses a dependency injection container (an extension of `Pimple
 * twig.extensions
 * twig.compilation_cache
 * twig.template_paths
+* twig.controller_variable_name
 
 An example:
 
@@ -172,7 +173,8 @@ TwigContainer::extendConfig(array(
     'twig.compilation_cache' => BASE_PATH . '/silverstripe-cache',
     'twig.template_paths' => array(
     	THEMES_PATH . '/my-theme/templates'
-    )
+    ),
+    'twig.controller_variable_name' => 'controller'
 ));
 ```
 
