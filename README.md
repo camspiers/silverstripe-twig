@@ -206,7 +206,7 @@ To the top of any template you want to be processed as haml.
 
 Example:
 
-```
+```haml
 {% haml %}
 !!!
 %html
