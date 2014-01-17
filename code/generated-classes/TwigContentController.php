@@ -17,7 +17,7 @@ class TwigContentController extends ContentController
         return $this->hasMethod($name) ? false : true;
     }
 
-    public function handleAction($request)
+    public function handleAction($request, $action)
     {
         // urlParams, requestParams, and action are set for backward compatability
         foreach ($request->latestParams() as $k => $v) {
