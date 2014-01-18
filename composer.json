@@ -1,7 +1,7 @@
 {
     "name": "camspiers/silverstripe-twig",
     "type": "silverstripe-module",
-    "description": "Allows use of twig in SilverStripe",
+    "description": "Allows use of twig in SilverStripe 3.1",
     "license": "MIT",
     "authors": [
         {

@@ -1,8 +1,8 @@
-#SilverStripe Twig
+#Twig templates for SilverStripe 3.1
 
 ##Overview
 
-SilverStripe Twig enables the use of the Twig templating engine in SilverStripe 2.4. SilverStripe Twig appears to work in SilverStripe 3 but isn't throughly tested.
+SilverStripe Twig enables the use of the Twig templating engine in SilverStripe 3.1.
 
 If you are not familiar with Twig, check out the [docs](http://twig.sensiolabs.org/).
 
