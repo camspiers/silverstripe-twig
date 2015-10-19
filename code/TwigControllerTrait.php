@@ -24,7 +24,7 @@ trait TwigControllerTrait
             if($v || !isset($this->urlParams[$k])) $this->urlParams[$k] = $v;
         }
 
-        $this->action = str_replace("-","_",$request->param('Action'));
+        $this->action = str_replace("-","_",$action);
         $this->requestParams = $request->requestVars();
         if(!$this->action) $this->action = 'index';
 
