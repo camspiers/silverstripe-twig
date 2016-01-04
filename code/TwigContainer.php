@@ -31,7 +31,6 @@ class TwigContainer extends Pimple
      */
     public function __construct()
     {
-
         parent::__construct();
 
         //Shared services
@@ -83,7 +82,6 @@ class TwigContainer extends Pimple
                 $this[$value[0]] = $this->share($value[1]);
             }
         }
-
     }
     /**
      * Alows the extending of already defined services by the user
@@ -113,5 +111,4 @@ class TwigContainer extends Pimple
             self::$config = array_merge(self::$config, $config);
         }
     }
-
 }

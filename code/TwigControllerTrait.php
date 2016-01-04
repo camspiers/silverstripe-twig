@@ -21,12 +21,16 @@ trait TwigControllerTrait
     {
         // urlParams, requestParams, and action are set for backward compatability
         foreach ($request->latestParams() as $k => $v) {
-            if($v || !isset($this->urlParams[$k])) $this->urlParams[$k] = $v;
+            if ($v || !isset($this->urlParams[$k])) {
+                $this->urlParams[$k] = $v;
+            }
         }
 
-        $this->action = str_replace("-","_",$action);
+        $this->action = str_replace("-", "_", $action);
         $this->requestParams = $request->requestVars();
-        if(!$this->action) $this->action = 'index';
+        if (!$this->action) {
+            $this->action = 'index';
+        }
 
         if (!$this->hasAction($this->action)) {
             $this->httpError(404, "The action '$this->action' does not exist in class $this->class");
@@ -123,14 +127,14 @@ trait TwigControllerTrait
             if ($action && $action != 'index') {
                 $parentClass = $this->class;
                 while ($parentClass != "Controller") {
-                    $templates[] = strtok($parentClass,'_') . '_' . $action;
+                    $templates[] = strtok($parentClass, '_') . '_' . $action;
                     $parentClass = get_parent_class($parentClass);
                 }
             }
             // Add controller templates for inheritance chain
             $parentClass = $this->class;
             while ($parentClass != "Controller") {
-                $templates[] = strtok($parentClass,'_');
+                $templates[] = strtok($parentClass, '_');
                 $parentClass = get_parent_class($parentClass);
             }
 
@@ -140,5 +144,4 @@ trait TwigControllerTrait
 
         return $templates;
     }
-
 }
